@@ -1,13 +1,7 @@
 FROM node:latest
-
 WORKDIR /usr/src/app
-
 COPY package*.json ./
-
 RUN npm install glob rimraf
-
 RUN npm install
-
-COPY . .
-
+COPY ./ ./
 RUN npm run build

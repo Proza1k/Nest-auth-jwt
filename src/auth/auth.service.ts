@@ -17,11 +17,18 @@ export class AuthService {
 
     const payload = {
       userId: user.id,
+      email: user.email,
     };
 
     return {
       access_token: this.jwtService.sign(payload),
+      user: payload,
     };
+  }
+
+  async getUserById(userId: number) {
+    const user = await this.usersService.findById(userId);
+    return user;
   }
 
   async validateUser(authLoginDto: AuthLoginDto): Promise<User> {
